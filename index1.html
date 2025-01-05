@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz 6 meses, mi amor! 🥺❤️ te amo nomi 🤍🥺</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1e6e1;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .contenido {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+            margin: 15px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #e63946;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.6;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        #contador {
+            font-size: 2em;
+            color: #e63946;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #descargar-btn {
+            margin-top: 40px;
+            padding: 15px 30px;
+            background-color: #e63946;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: none; /* El botón está oculto inicialmente */
+        }
+        #descargar-btn:hover {
+            background-color: #d62c32;
+        }
+
+        /* Responsivo: Ajuste para pantallas más pequeñas */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em; /* Tamaño de fuente más pequeño para títulos */
+            }
+            p {
+                font-size: 1em; /* Texto más pequeño en dispositivos móviles */
+            }
+            #descargar-btn {
+                padding: 12px 25px; /* Botón un poco más grande en móviles */
+                font-size: 1.1em;   /* Fuente del botón más grande */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contenido">
+        <h1>Feliz 6 meses, mi amor 🥰</h1>
+        <p>
+            Hoy celebro 6 meses de amor, de risas, de momentos inolvidables contigo.  
+            No sabes lo feliz que me haces, cada día contigo es un regalo, y quiero que este amor siga creciendo.  
+            Gracias por estar a mi lado, por tu amor y por hacerme sentir tan afortunado. Te amo más de lo que las palabras pueden expresar.
+        </p>
+        <footer>
+            Con todo mi amor,  
+            <em>Tu amor, siempre 💖-🤍</em>
+        </footer>
+        <div id="contador">
+            <p>Cuenta regresiva para nuestro siguiente 6 meses...</p>
+            <span id="timer"></span>
+        </div>
+
+        <!-- Botón para descargar el PDF (inicialmente oculto) -->
+        <a href="noemy.pdf" download>
+            <button id="descargar-btn">Descargar lo que hice con amor 🥺🤍</button>
+        </a>
+    </div>
+
+    <script>
+        // Verifica si la cuenta regresiva ya pasó o se ha completado
+        let storedStartTime = localStorage.getItem("startTime");
+
+        // Si la cuenta regresiva ha terminado, no reiniciar
+        if (!storedStartTime || new Date().getTime() > parseInt(storedStartTime) + 3 * 60 * 1000) { // 3 minutos de prueba
+            storedStartTime = new Date().getTime();
+            localStorage.setItem("startTime", storedStartTime);  // Guardamos el nuevo tiempo de inicio
+        }
+
+        // Establece el tiempo de cuenta regresiva a 3 minutos desde el tiempo guardado
+        let countDownDate = parseInt(storedStartTime) + 3 * 60 * 1000; // 3 minutos
+
+        function updateCountdown() {
+            let now = new Date().getTime();
+            let distance = countDownDate - now;
+
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("timer").innerHTML = "¡feliz 6 mese 🥺🤍! ";
+                document.getElementById("descargar-btn").style.display = "inline-block";  // Muestra el botón
+            }
+        }
+
+        // Llama a la función de cuenta regresiva cada segundo
+        let countdownInterval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
